@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'PostsController@getIndex');
+
+Route::get('new', 'PostsController@getNew');
+
+Route::post('new', 'PostsController@postNew');
