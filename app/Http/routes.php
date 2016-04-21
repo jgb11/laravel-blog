@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'PostsController@getIndex');
-
 Route::get('new', 'PostsController@getNew');
+Route::get('edit/{id}', 'PostsController@getEdit');
+
 
 Route::post('new', 'PostsController@postNew');
+Route::post('edit', 'PostsController@postEdit');
