@@ -10,11 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::auth();
 
 Route::get('/', 'PostsController@getIndex');
-Route::get('new', 'PostsController@getNew');
-Route::get('edit/{id}', 'PostsController@getEdit');
+Route::get('new', ['middleware' => 'auth', 'uses' => 'PostsController@getNew']);
+Route::get('edit/{id}', ['middleware' => 'auth', 'uses' => 'PostsController@getEdit']);
+Route::get('delete/{id}', ['middleware' => 'auth', 'uses' => 'PostsController@delete']);
 
 
-Route::post('new', 'PostsController@postNew');
-Route::post('edit', 'PostsController@postEdit');
+Route::post('new', ['middleware' => 'auth', 'uses' => 'PostsController@postNew']);
+Route::post('edit', ['middleware' => 'auth', 'uses' => 'PostsController@postEdit']);

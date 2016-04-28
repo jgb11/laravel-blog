@@ -37,7 +37,13 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url('/new') }}">Nueva entrada</a></li>
+            @if(Auth::check())
+              <li><a href="{{ url('/new') }}">Nueva entrada</a></li>
+              <li><a href="{{ url('/logout') }}">Cerrar sesión</a></li>
+            @else
+              <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
+              <li><a href="{{ url('/register') }}">Crear cuenta</a></li>
+            @endif
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

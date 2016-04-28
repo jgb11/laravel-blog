@@ -11,12 +11,12 @@ class PostsController extends Controller
   public function getIndex()
   {
     $posts = Post::orderBy('created_at', 'desc')->get();
-    return view('index', ['posts' => $posts]);
+    return view('posts.index', ['posts' => $posts]);
   }
 
   public function getNew()
   {
-    return view('new');
+    return view('posts.new');
   }
 
   public function postNew(Request $req)
@@ -25,7 +25,7 @@ class PostsController extends Controller
 
     $post->title = $req->title;
     $post->body = $req->body;
-    $post->user_id = 1;
+    $post->user_id = $req->user()->id;
 
     $post->save();
 
@@ -35,7 +35,7 @@ class PostsController extends Controller
   public function getEdit($postId)
   {
     $post = Post::find($postId);
-    return view('edit', ['post' => $post]);
+    return view('posts.edit', ['post' => $post]);
   }
 
   public function postEdit(Request $req)
@@ -47,6 +47,15 @@ class PostsController extends Controller
     $post->user_id = 1;
 
     $post->save();
+
+    return redirect('/');
+  }
+
+  public function delete($postId)
+  {
+    $post = Post::find($postId);
+
+    $post->delete();
 
     return redirect('/');
   }
