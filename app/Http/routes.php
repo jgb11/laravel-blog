@@ -13,10 +13,13 @@
 Route::auth();
 
 Route::get('/', 'PostsController@getIndex');
-Route::get('new', ['middleware' => 'auth', 'uses' => 'PostsController@getNew']);
-Route::get('edit/{id}', ['middleware' => 'auth', 'uses' => 'PostsController@getEdit']);
-Route::get('delete/{id}', ['middleware' => 'auth', 'uses' => 'PostsController@delete']);
 
+Route::group(['middleware' => 'auth'], function()
+{
+  Route::get('new', 'PostsController@getNew');
+  Route::get('edit/{id}', 'PostsController@getEdit')->where('id', '[0-9]+');
+  Route::get('delete/{id}', 'PostsController@delete')->where('id', '[0-9]+');
 
-Route::post('new', ['middleware' => 'auth', 'uses' => 'PostsController@postNew']);
-Route::post('edit', ['middleware' => 'auth', 'uses' => 'PostsController@postEdit']);
+  Route::post('new', 'PostsController@postNew');
+  Route::post('edit', 'PostsController@postEdit');
+});
