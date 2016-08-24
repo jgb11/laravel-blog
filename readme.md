@@ -1,3 +1,16 @@
+# Blog Laravel 5
+
+Creación de un blog básico con el framework de PHP Laravel 5.
+
+Características del blog:
+
+- CRUD (Leer, crear, editar y borrar) de posts
+- Laravel login
+
+Prerrequisitos:
+
+- Tener instalado [XAMPP](https://www.apachefriends.org/es/index.html)
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
